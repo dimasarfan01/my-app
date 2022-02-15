@@ -1,13 +1,14 @@
 import React from 'react';
 import { Button } from '../../atoms/Button';
 import profile1 from '../../../assets/profile1.png';
+import Dot from '../../atoms/Dot';
 
 const NewsContentItem = () => {
-  const { Dot, Text } = Component;
+  const { Text } = Component;
   return (
-    <div className="flex flex-col items-start space-y-2">
+    <div className="flex flex-col items-start space-y-2 w-52">
       <Button.Link href="/" title="Productivity" backgroundColor="primary" />
-      <p className="break-words w-52 text-md font-medium">
+      <p className="break-words text-md font-medium">
         Elon Musk on How to learn and adapth more Faster:
       </p>
       <div className="flex items-center space-x-2">
@@ -23,12 +24,9 @@ const NewsContentItem = () => {
 };
 
 const Component = {
-  Dot: () => {
-    return <span className="bg-gray-500 rounded-full" style={{ padding: 1 }} />;
-  },
   Text: ({ text }) => {
     return (
-      <p className="text-gray-500" style={{ fontSize: 8 }}>
+      <p className="text-gray-500" style={{ fontSize: 7.5 }}>
         {text}
       </p>
     );

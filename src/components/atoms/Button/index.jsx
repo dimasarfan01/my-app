@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
+import { BsArrowLeftShort } from 'react-icons/bs';
 
 export const Button = {
   Active: ({ active = false, width = 0, title = '', onClick }) => {
@@ -19,6 +20,8 @@ export const Button = {
     backgroundColor = '',
     textColor = '',
     withPadding = true,
+    withArrow = false,
+    width,
   }) => {
     const className = cx({
       'bg-white opacity-80': backgroundColor === 'transparent',
@@ -28,11 +31,13 @@ export const Button = {
       'text-blue-400': textColor === 'link',
       'rounded-full py-1': true,
       'px-3': withPadding,
+      'flex flex-row items-center': withArrow,
     });
 
     return (
-      <Link to={href} className={className} style={{ fontSize: 10 }}>
-        {title}
+      <Link to={href} className={className} style={{ fontSize: 10, width }}>
+        {withArrow && <BsArrowLeftShort className="mr-2 h-6 w-6" />}
+        <p>{title}</p>
       </Link>
     );
   },

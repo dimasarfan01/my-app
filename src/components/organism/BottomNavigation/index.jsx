@@ -11,29 +11,25 @@ import {
 } from 'react-icons/bs';
 import ListItemNavigation from './ListItemNavigation';
 
-const BottomNavigation = ({ active = 'home' }) => {
+const BottomNavigation = () => {
   return (
-    <div className="w-full p-2 shadow rounded-t-3xl fixed bottom-0 bg-white h-20 flex items-center justify-evenly">
+    <div className="w-full p-2 shadow rounded-t-3xl fixed bottom-0 bg-white h-20 flex items-center justify-center">
       <ListItemNavigation
-        active={active === 'home'}
         iconActive={<BsHouseDoorFill />}
         iconInActive={<BsHouseDoor />}
         href="/"
       />
       <ListItemNavigation
-        active={active === 'explore'}
         iconActive={<BsCompassFill />}
         iconInActive={<BsCompass />}
-        href="/"
+        href="/explore"
       />
       <ListItemNavigation
-        active={active === 'inbox'}
         iconActive={<BsInboxFill />}
         iconInActive={<BsInbox />}
-        href="/"
+        href="/inbox"
       />
       <ListItemNavigation
-        active={active === 'profile'}
         iconActive={<BsFillPersonFill />}
         iconInActive={<BsPerson />}
         href="/profile"

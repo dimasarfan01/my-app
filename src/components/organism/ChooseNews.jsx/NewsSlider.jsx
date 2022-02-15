@@ -52,7 +52,7 @@ const Component = {
         <img
           src={image}
           alt="content_image"
-          className="rounded-lg object-cover opacity-80"
+          className="rounded-lg object-cover opacity-70"
           style={{ height: 270 }}
         />
         {children}
