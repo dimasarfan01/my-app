@@ -1,14 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Container from '../../atoms/Container';
-import home1 from '../../../assets/home1.jpeg';
 import NewsContentItem from './NewsContentItem';
 
-const NewsItem = () => {
+const NewsItem = ({ data }) => {
+  const navigate = useNavigate();
   return (
-    <Container className="flex justify-between items-center" marginBottom={20}>
-      <NewsContentItem />
+    <Container
+      onClick={() => navigate(`/${data._id}`)}
+      className="flex justify-between items-center"
+      marginBottom={20}
+    >
+      <NewsContentItem data={data} />
       <img
-        src={home1}
+        src={data.image}
         alt="news_img"
         className="rounded-lg object-cover"
         style={{ height: 110, width: 110 }}

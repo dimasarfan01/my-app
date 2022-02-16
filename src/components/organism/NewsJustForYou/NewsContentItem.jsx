@@ -1,23 +1,34 @@
 import React from 'react';
 import { Button } from '../../atoms/Button';
-import profile1 from '../../../assets/profile1.png';
 import Dot from '../../atoms/Dot';
+import moment from 'moment';
 
-const NewsContentItem = () => {
+const NewsContentItem = ({ data }) => {
   const { Text } = Component;
   return (
     <div className="flex flex-col items-start space-y-2 w-52">
-      <Button.Link href="/" title="Productivity" backgroundColor="primary" />
-      <p className="break-words text-md font-medium">
-        Elon Musk on How to learn and adapth more Faster:
-      </p>
       <div className="flex items-center space-x-2">
-        <img src={profile1} alt="avatar" className="rounded-full h-5 w-5" />
-        <Text text="How To Be Better" />
+        {data.category.map((item, index) => (
+          <Button.Link
+            key={index}
+            href="/"
+            title={item}
+            backgroundColor="primary"
+          />
+        ))}
+      </div>
+      <p className="break-words text-md font-medium">{data.title}</p>
+      <div className="flex items-center space-x-2">
+        <img
+          src={data.postedBy.image}
+          alt="avatar"
+          className="rounded-full h-5 w-5 object-cover"
+        />
+        <Text text={data.postedBy.userName} />
         <Dot />
-        <Text text="4 Min" />
+        <Text text={data.duration} />
         <Dot />
-        <Text text="12 Hours Ago" />
+        <Text text={moment(data.createdAt).startOf('hour').fromNow()} />
       </div>
     </div>
   );

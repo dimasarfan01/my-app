@@ -14,6 +14,7 @@ function App() {
         <Route path="/:id" element={<NewsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/explore/:name" element={<ExplorePage />} />
         <Route path="/inbox" element={<InboxPage />} />
       </Routes>
       <BottomNavigation />

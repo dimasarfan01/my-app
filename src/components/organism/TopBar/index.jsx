@@ -1,6 +1,8 @@
 import React from 'react';
 import Container from '../../atoms/Container';
 import profile1 from '../../../assets/profile1.png';
+import moment from 'moment';
+
 const TopBar = () => {
   const { TitleAndProfile, Greeting } = Component;
   return (
@@ -30,7 +32,7 @@ const Component = {
     return (
       <div className="mt-6">
         <p className="text-gray-400 text-xs mb-2">
-          {new Date().toDateString()}
+          {moment().format('dddd, MMM Do')}
         </p>
         <p className="font-semibold text-2xl">Welcome back,</p>
         <p className="font-semibold text-2xl">Jennifer</p>

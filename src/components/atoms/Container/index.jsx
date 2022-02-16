@@ -10,10 +10,12 @@ const Container = ({
   className,
   height,
   width,
+  onClick,
   children,
 }) => {
   return (
     <div
+      onClick={onClick}
       className={className}
       style={{
         marginLeft: marginHorizontal,
