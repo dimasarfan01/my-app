@@ -7,7 +7,7 @@ const NewsItem = ({ data }) => {
   const navigate = useNavigate();
   return (
     <Container
-      onClick={() => navigate(`/${data._id}`)}
+      onClick={() => navigate(`/news/${data._id}`)}
       className="flex justify-between items-center"
       marginBottom={20}
     >

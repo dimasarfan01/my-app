@@ -9,12 +9,7 @@ const NewsContentItem = ({ data }) => {
     <div className="flex flex-col items-start space-y-2 w-52">
       <div className="flex items-center space-x-2">
         {data.category.map((item, index) => (
-          <Button.Link
-            key={index}
-            href="/"
-            title={item}
-            backgroundColor="primary"
-          />
+          <Button.Link key={index} title={item} backgroundColor="primary" />
         ))}
       </div>
       <p className="break-words text-md font-medium">{data.title}</p>

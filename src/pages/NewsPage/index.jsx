@@ -1,6 +1,5 @@
 import React from 'react';
 import { MdMoreVert } from 'react-icons/md';
-import { useLocation } from 'react-router-dom';
 import home1 from '../../assets/home3.jpeg';
 import profile1 from '../../assets/profile1.png';
 import { Button } from '../../components/atoms/Button';
@@ -8,7 +7,6 @@ import Container from '../../components/atoms/Container';
 import PageContainer from '../../components/atoms/PageContainer';
 
 const NewsPage = () => {
-  const pathId = useLocation().pathname[1];
   const {
     NavigationAndOption,
     NewsDetailsContainer,

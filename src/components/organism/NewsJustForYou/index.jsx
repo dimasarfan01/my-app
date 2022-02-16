@@ -4,12 +4,12 @@ import TitleAndLink from '../../atoms/TitleAndLink';
 import NewsItem from './NewsItem';
 import { getAllNewsAPI } from '../../../services/newsAPI';
 
-const NewsJustForYou = ({ withTitle = true, limit = 3 }) => {
+const NewsJustForYou = ({ withTitle = true, limit = 3, category = '' }) => {
   const [dataNews, setDataNews] = useState([]);
 
   useEffect(() => {
-    getAllNewsAPI({ limit }).then((res) => setDataNews(res.data));
-  }, [limit]);
+    getAllNewsAPI({ limit, category }).then((res) => setDataNews(res.data));
+  }, [category, limit]);
 
   return (
     <Container marginHorizontal={30}>

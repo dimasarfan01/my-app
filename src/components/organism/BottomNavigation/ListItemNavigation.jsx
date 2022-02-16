@@ -2,14 +2,15 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const ListItemNavigation = ({ iconActive, iconInActive, href = '/' }) => {
-  const location = useLocation();
+  const location = useLocation().pathname.split('/');
+  const path = location.length > 2 ? location[2] : location[1];
 
   return (
     <Link
       to={href}
       className="relative flex flex-col items-center h-full justify-center px-7"
     >
-      {href === location.pathname ? (
+      {href === '/' + path ? (
         <>
           {iconActive}
           <span className="absolute -bottom-2.5 w-14 h-1.5 bg-black rounded-t-full" />
