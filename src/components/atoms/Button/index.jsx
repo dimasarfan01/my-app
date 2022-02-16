@@ -11,7 +11,7 @@ export const Button = {
     children,
   }) => {
     const className = cx({
-      'bg-gray-50': active,
+      'bg-gray-50 shadow': active,
       'rounded-full': borderRoundedFull,
       'rounded-lg': !borderRoundedFull,
       'px-2 py-1 text-sm text-gray-700 transition ease-in-out duration-500 flex flex-col items-center justify-center': true,
