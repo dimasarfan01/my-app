@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdMoreVert } from 'react-icons/md';
-import home1 from '../../assets/home3.jpeg';
-import profile1 from '../../assets/profile1.png';
+import { useLocation } from 'react-router-dom';
 import { Button } from '../../components/atoms/Button';
 import Container from '../../components/atoms/Container';
 import PageContainer from '../../components/atoms/PageContainer';
+import { getNewsByIdAPI } from '../../services/newsAPI';
+import Loading from '../../components/atoms/Loading';
 
 const NewsPage = () => {
   const {
@@ -13,18 +14,41 @@ const NewsPage = () => {
     NewsDetails,
     NewsInformation,
   } = Component;
+
+  const location = useLocation();
+  const [dataNewsById, setDataNewsById] = useState({});
+  const [loading, setLoading] = useState(true);
+  const pathId = location.pathname.split('/')[2];
+
+  useEffect(() => {
+    getNewsByIdAPI({ id: pathId }).then((res) => {
+      setDataNewsById(res.data);
+      setLoading(false);
+    });
+  }, [pathId]);
+
+  if (loading)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <Loading />
+      </div>
+    );
   return (
     <PageContainer>
       <Container height={270} className="bg-gray-400 relative w-full">
         <img
-          src={home1}
+          src={dataNewsById.image}
           alt="home_image"
           className="object-cover w-full"
           style={{ height: 270 }}
         />
-        <NavigationAndOption />
+        <NavigationAndOption title={dataNewsById.title} />
         <NewsDetailsContainer>
-          <NewsDetails />
+          <NewsDetails
+            title={dataNewsById.title}
+            category={dataNewsById.category}
+            postedBy={dataNewsById.postedBy}
+          />
           <NewsInformation />
         </NewsDetailsContainer>
       </Container>
@@ -33,7 +57,7 @@ const NewsPage = () => {
 };
 
 const Component = {
-  NavigationAndOption: () => {
+  NavigationAndOption: ({ title }) => {
     return (
       <Container
         marginTop={15}
@@ -42,7 +66,7 @@ const Component = {
       >
         <Button.Link
           withArrow
-          title="Minimal: The minimum you need to know"
+          title={title}
           backgroundColor="transparent"
           width={120}
           height={30}
@@ -66,19 +90,22 @@ const Component = {
       </Container>
     );
   },
-  NewsDetails: () => {
+  NewsDetails: ({ title, category, postedBy }) => {
     return (
       <div className="flex flex-col space-y-4 mb-10">
         <div className="flex flex-row items-center space-x-2">
-          <Button.Link backgroundColor="primary" title="Life Improvment" />
-          <Button.Link backgroundColor="primary" title="Knowledge" />
+          {category.map((item, index) => (
+            <Button.Link key={index} backgroundColor="primary" title={item} />
+          ))}
         </div>
-        <h1 className="text-3xl font-medium">
-          Minimal: Things You Should Know
-        </h1>
+        <h1 className="text-3xl font-medium">{title}</h1>
         <div className="flex items-center space-x-2">
-          <img src={profile1} alt="avatar" className="h-10 w-10" />
-          <h2 className="font-medium">Life At</h2>
+          <img
+            src={postedBy.image}
+            alt="avatar"
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <h2 className="font-medium">{postedBy.userName}</h2>
         </div>
       </div>
     );

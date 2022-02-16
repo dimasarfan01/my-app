@@ -15,4 +15,17 @@ const getAllNewsAPI = async ({ page = 1, limit = 1, category = '' }) => {
   }
 };
 
-export { getAllNewsAPI };
+const getNewsByIdAPI = async ({ id }) => {
+  try {
+    const response = await axios({
+      url: `${baseUrl}/api/v1/news/${id}`,
+      method: 'GET',
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getAllNewsAPI, getNewsByIdAPI };
