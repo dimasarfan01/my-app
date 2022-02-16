@@ -4,28 +4,30 @@ import home1 from '../../../assets/home1.jpeg';
 import home2 from '../../../assets/home2.jpeg';
 import home3 from '../../../assets/home3.jpeg';
 import { Button } from '../../atoms/Button';
+import { useNavigate } from 'react-router-dom';
 
 const NewsSlider = () => {
   const { Slider, CardContainer, CardCategory, CardTitleAndPostedBy } =
     Component;
+  const navigate = useNavigate();
   return (
     <Slider>
-      <CardContainer image={home1}>
+      <CardContainer image={home1} onClick={() => navigate('/1')}>
         <CardCategory data={['Life Improvment', 'Knowledge']} />
         <CardTitleAndPostedBy
           title="Minimal: Things You Should Know"
           postedBy={{ image: profile, userName: 'Life At' }}
         />
       </CardContainer>
-      <CardContainer image={home2}>
-        <CardCategory data={['Life Improvment', 'Knowledge']} />
+      <CardContainer image={home2} onClick={() => navigate('/2')}>
+        <CardCategory data={['Future', 'Invest']} />
         <CardTitleAndPostedBy
-          title="Minimal: Things You Should Know"
+          title="Living Tribunal: How to Invest in Your Future"
           postedBy={{ image: profile, userName: 'Life At' }}
         />
       </CardContainer>
-      <CardContainer image={home3}>
-        <CardCategory data={['Life Improvment', 'Knowledge']} />
+      <CardContainer image={home3} onClick={() => navigate('/3')}>
+        <CardCategory data={['Courage']} />
         <CardTitleAndPostedBy
           title="Minimal: Things You Should Know"
           postedBy={{ image: profile, userName: 'Life At' }}
@@ -43,20 +45,25 @@ const Component = {
       </div>
     );
   },
-  CardContainer: ({ image, children }) => {
+  CardContainer: ({ image, children, onClick }) => {
     return (
-      <div
-        className="whitespace-normal inline-block snap-center relative"
+      <button
+        className="whitespace-normal inline-block snap-center relative text-left"
+        onClick={onClick}
         style={{ width: 350 }}
       >
         <img
           src={image}
           alt="content_image"
-          className="rounded-lg object-cover opacity-70"
+          className="rounded-2xl object-cover opacity-70"
+          style={{ height: 270 }}
+        />
+        <span
+          className="absolute top-0 bg-gradient-to-r from-cyan-500 to-white w-full opacity-20 rounded-2xl"
           style={{ height: 270 }}
         />
         {children}
-      </div>
+      </button>
     );
   },
   CardCategory: ({ data }) => {
@@ -79,7 +86,7 @@ const Component = {
         <p className="break-words text-xl font-semibold w-56">{title}</p>
         <div className="flex flex-row items-center space-x-2">
           <img src={postedBy.image} alt="profile" className="h-8 w-8" />
-          <p className="text-lg font-medium">{postedBy.userName}</p>
+          <p className="text-sm font-medium">{postedBy.userName}</p>
         </div>
       </div>
     );

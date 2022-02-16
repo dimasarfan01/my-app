@@ -13,7 +13,7 @@ import ListItemNavigation from './ListItemNavigation';
 
 const BottomNavigation = () => {
   return (
-    <div className="w-full p-2 shadow rounded-t-3xl fixed bottom-0 bg-white h-20 flex items-center justify-center">
+    <div className="w-full p-2 shadow shadow-gray-300 rounded-t-3xl fixed bottom-0 bg-white h-20 flex items-center justify-center">
       <ListItemNavigation
         iconActive={<BsHouseDoorFill />}
         iconInActive={<BsHouseDoor />}
