@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAllNewsAPI } from '../../../services/newsAPI';
 import { Button } from '../../atoms/Button';
-import LoadingPulse from '../../atoms/LoadingPulse';
+import Loading from '../../atoms/Loading';
 
 const NewsSlider = () => {
   const { Slider, CardContainer, CardCategory, CardTitleAndPostedBy } =
@@ -20,7 +20,11 @@ const NewsSlider = () => {
   }, []);
 
   if (loading) {
-    return <LoadingPulse />;
+    return (
+      <div className="flex items-center space-x-4 justify-center">
+        <Loading />
+      </div>
+    );
   }
 
   return (
@@ -42,7 +46,7 @@ const NewsSlider = () => {
 const Component = {
   Slider: ({ children }) => {
     return (
-      <div className="overflow-x-scroll whitespace-nowrap w-full space-x-4 snap-mandatory snap-x px-7 h-full">
+      <div className="overflow-scroll overflow-x-scroll whitespace-nowrap w-full space-x-4 snap-mandatory snap-x px-7 h-full">
         {children}
       </div>
     );
@@ -84,7 +88,9 @@ const Component = {
   CardTitleAndPostedBy: ({ title, postedBy }) => {
     return (
       <div className="absolute top-36 left-5 flex flex-col space-y-2">
-        <p className="break-words text-xl font-semibold w-56">{title}</p>
+        <p className="break-words text-xl font-semibold w-56">
+          {title.length > 41 ? `${title.slice(0, 41)}...` : title}
+        </p>
         <div className="flex flex-row items-center space-x-2">
           <img
             src={postedBy.image}

@@ -7,7 +7,9 @@ const ExplorePage = () => {
   const location = useLocation().pathname.split('/')[2] || '';
   const firstLetterToUpperCase = location[0]?.toUpperCase();
   const getCategory = location?.replace(location[0], firstLetterToUpperCase);
+
   const { TitleAndCategory } = Component;
+
   return (
     <PageContainer paddingTop={15} paddingBottom={100}>
       <TitleAndCategory category={getCategory} />
