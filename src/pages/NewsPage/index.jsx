@@ -95,7 +95,12 @@ const Component = {
       <div className="flex flex-col space-y-4 mb-10">
         <div className="flex flex-row items-center space-x-2">
           {category.map((item, index) => (
-            <Button.Link key={index} backgroundColor="primary" title={item} />
+            <Button.Link
+              href={`/explore/${item}`}
+              key={index}
+              backgroundColor="primary"
+              title={item}
+            />
           ))}
         </div>
         <h1 className="text-3xl font-medium">{title}</h1>

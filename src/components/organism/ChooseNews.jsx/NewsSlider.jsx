@@ -1,38 +1,40 @@
-import React from 'react';
-import profile from '../../../assets/profile1.png';
-import home1 from '../../../assets/home1.jpeg';
-import home2 from '../../../assets/home2.jpeg';
-import home3 from '../../../assets/home3.jpeg';
-import { Button } from '../../atoms/Button';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAllNewsAPI } from '../../../services/newsAPI';
+import { Button } from '../../atoms/Button';
+import LoadingPulse from '../../atoms/LoadingPulse';
 
 const NewsSlider = () => {
   const { Slider, CardContainer, CardCategory, CardTitleAndPostedBy } =
     Component;
   const navigate = useNavigate();
+
+  const [dataNews, setDataNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllNewsAPI({ limit: 4 }).then((res) => {
+      setDataNews(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return <LoadingPulse />;
+  }
+
   return (
     <Slider>
-      <CardContainer image={home1} onClick={() => navigate('/1')}>
-        <CardCategory data={['Life Improvment', 'Knowledge']} />
-        <CardTitleAndPostedBy
-          title="Minimal: Things You Should Know"
-          postedBy={{ image: profile, userName: 'Life At' }}
-        />
-      </CardContainer>
-      <CardContainer image={home2} onClick={() => navigate('/2')}>
-        <CardCategory data={['Future', 'Invest']} />
-        <CardTitleAndPostedBy
-          title="Living Tribunal: How to Invest in Your Future"
-          postedBy={{ image: profile, userName: 'Life At' }}
-        />
-      </CardContainer>
-      <CardContainer image={home3} onClick={() => navigate('/3')}>
-        <CardCategory data={['Courage']} />
-        <CardTitleAndPostedBy
-          title="Minimal: Things You Should Know"
-          postedBy={{ image: profile, userName: 'Life At' }}
-        />
-      </CardContainer>
+      {dataNews.map((news) => (
+        <CardContainer
+          key={news._id}
+          image={news.image}
+          onClick={() => navigate(`/news/${news._id}`)}
+        >
+          <CardCategory data={news.category} />
+          <CardTitleAndPostedBy title={news.title} postedBy={news.postedBy} />
+        </CardContainer>
+      ))}
     </Slider>
   );
 };
@@ -59,7 +61,7 @@ const Component = {
           style={{ height: 270 }}
         />
         <span
-          className="absolute top-0 bg-gradient-to-r from-cyan-500 to-white w-full opacity-20 rounded-2xl"
+          className="absolute top-0 bg-gradient-to-r from-blue-500 to-white w-full opacity-20 rounded-2xl"
           style={{ height: 270 }}
         />
         {children}
@@ -72,7 +74,6 @@ const Component = {
         {data.map((category, index) => (
           <Button.Link
             key={index}
-            href="/"
             title={category}
             backgroundColor="transparent"
           />
@@ -85,7 +86,11 @@ const Component = {
       <div className="absolute top-36 left-5 flex flex-col space-y-2">
         <p className="break-words text-xl font-semibold w-56">{title}</p>
         <div className="flex flex-row items-center space-x-2">
-          <img src={postedBy.image} alt="profile" className="h-8 w-8" />
+          <img
+            src={postedBy.image}
+            alt="profile"
+            className="h-8 w-8 rounded-full object-cover"
+          />
           <p className="text-sm font-medium">{postedBy.userName}</p>
         </div>
       </div>

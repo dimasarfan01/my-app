@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const ListItemNavigation = ({ iconActive, iconInActive, href = '/' }) => {
   const location = useLocation().pathname.split('/');
-  const path = location.length > 2 ? location[2] : location[1];
-
+  const path = location.length > 2 ? location[1] : location[0];
+  console.log(path);
   return (
     <Link
       to={href}
