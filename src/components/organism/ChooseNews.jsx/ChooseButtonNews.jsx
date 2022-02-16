@@ -12,22 +12,25 @@ const ChooseButtonNews = () => {
     >
       <Button.Active
         active={active === 'Feeds'}
-        title={'Feeds'}
         onClick={() => setActive('Feeds')}
         width={100}
-      />
+      >
+        Feeds
+      </Button.Active>
       <Button.Active
         active={active === 'Popular'}
-        title={'Popular'}
         onClick={() => setActive('Popular')}
         width={100}
-      />
+      >
+        Popular
+      </Button.Active>
       <Button.Active
         active={active === 'Following'}
-        title={'Following'}
         onClick={() => setActive('Following')}
         width={100}
-      />
+      >
+        Following
+      </Button.Active>
     </Container>
   );
 };

@@ -3,14 +3,22 @@ import { Link } from 'react-router-dom';
 import { BsArrowLeftShort } from 'react-icons/bs';
 
 export const Button = {
-  Active: ({ active = false, width = 0, title = '', onClick }) => {
+  Active: ({
+    active = false,
+    width = 0,
+    onClick,
+    borderRoundedFull = true,
+    children,
+  }) => {
     const className = cx({
-      'bg-white shadow': active,
-      'px-2 py-1 rounded-full text-sm text-gray-700 transition ease-in-out duration-500': true,
+      'bg-gray-50': active,
+      'rounded-full': borderRoundedFull,
+      'rounded-lg': !borderRoundedFull,
+      'px-2 py-1 text-sm text-gray-700 transition ease-in-out duration-500 flex flex-col items-center justify-center': true,
     });
     return (
       <button className={className} onClick={onClick} style={{ width }}>
-        {title}
+        {children}
       </button>
     );
   },

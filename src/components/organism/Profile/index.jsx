@@ -5,9 +5,11 @@ import home2 from '../../../assets/home2.jpeg';
 import { BsPencil } from 'react-icons/bs';
 import MyCollections from './MyCollections';
 import Dot from '../../atoms/Dot';
+import { Button } from '../../atoms/Button';
 
 const Profile = () => {
-  const { ProfileAndAvatar, Banner, ProductivityTips } = Component;
+  const { ProfileAndAvatar, Banner, ProductivityTips, DataInformation } =
+    Component;
   return (
     <Container marginTop={15} marginBottom={25}>
       <Container
@@ -17,6 +19,7 @@ const Profile = () => {
         <Banner />
         <ProfileAndAvatar />
       </Container>
+      <DataInformation />
       <MyCollections />
       <ProductivityTips />
     </Container>
@@ -62,6 +65,27 @@ const Component = {
           <p>21 Writers</p>
         </div>
       </div>
+    );
+  },
+  DataInformation: () => {
+    return (
+      <Container
+        marginBottom={30}
+        className="bg-gray-200/40 p-2 rounded-2xl flex items-center justify-center space-x-2"
+      >
+        <Button.Active width={100} borderRoundedFull={false}>
+          <span className="font-bold text-xl">1,419</span>
+          <p className="text-xs text-gray-400">Liked News</p>
+        </Button.Active>
+        <Button.Active width={100} borderRoundedFull={false} active>
+          <span className="font-bold text-xl">12</span>
+          <p className="text-xs text-gray-400">Collections</p>
+        </Button.Active>
+        <Button.Active width={100} borderRoundedFull={false}>
+          <span className="font-bold text-xl">142</span>
+          <p className="text-xs text-gray-400">Following</p>
+        </Button.Active>
+      </Container>
     );
   },
 };
