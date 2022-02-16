@@ -23,7 +23,7 @@ const NewsJustForYou = ({ withTitle = true, limit = 3, category = '' }) => {
       {dataNews.length !== 0 ? (
         dataNews.map((news) => <NewsItem key={news._id} data={news} />)
       ) : (
-        <p className="text-sm text-gray-500">Loading...</p>
+        <p className="text-sm text-gray-500 animate-pulse">Loading...</p>
       )}
     </Container>
   );
